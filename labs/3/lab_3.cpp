@@ -1,6 +1,6 @@
-/*
+ /*
  * Name        : lab_3.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Using branching statements, looping statements and string and
  *               character functions complete the functions
  */
@@ -65,6 +65,47 @@ int main() {
  */
 string Goldilocks(string item, int number) {
   // CODE HERE
+  if (item == "porridge") {
+    if (number == 1) {
+      cout >> "This porridge is too hot";
+   }else if (number == 2) {
+      cout >> "This porridge is too cold";
+   }else if (number == 3) {
+      cout >> "This porridge is just right";
+   } else {
+      cout >> "This porridge is just right";
+   }
+  }else if (item == "chair") {
+    if (number == 1) {
+      cout >> "This chair is too big";
+    }else if (item == 2) {
+      cout >> "This chair is too soft";
+    }else if (item == 3) {
+      cout >> "This chair is just right";
+    }else {
+      cout >> "This chair is just right";
+    }
+  }else if (item == "bed") {
+    if (number == 1) {
+      cout >> "This bed is too hard";
+    }else if (number == 2) {
+      cout >> "This bed is too soft";
+    }else if (number == 3) {
+      cout >> "This bed is just right";
+    }else {
+      cout >> "This bed is just right";
+    }
+  }else {
+    if (number == 1) {
+      cout >> "This bed is too hard";
+    }else if (number == 2) {
+      cout >> "This bed is too soft";
+    }else if (number == 3) {
+      cout >> "This bed is just right";
+    }else {
+      cout >> "This bed is just right";
+    }
+  } 
 }
 
 /*

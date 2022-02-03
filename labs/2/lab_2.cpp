@@ -1,6 +1,6 @@
 /*
  * Name        : lab_2.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Using Arithmetic to finish the functions MakeChange() and
  *               LaunchHumanCannonball()
  */
@@ -33,6 +33,7 @@ double LaunchHumanCannonball(double initial_velocity, double launch_angle);
 // Create a Constant named kPI which is initialized to 3.1415927
 // FILL IN
 
+const double kPI = 3.1415927;
 // Program Execution Starts Here
 int main() {
   // To test your code (DO NOT ALTER)
@@ -57,6 +58,18 @@ int main() {
 void MakeChange(int initial_value, int &quarters, int &dimes, int &nickels,
                 int &pennies) {
   // CODE HERE
+  int new_value;
+  
+  quarters = initial_value / 25;
+  new_value = initial_value % 25;
+  
+  dimes = new_value / 10;
+  new_value = new_value % 10;
+  
+  nickels = new_value / 5;
+  new_value = new_value % 5;
+  
+  pennies = new_value / 1;
 }
 
 /*
@@ -74,23 +87,33 @@ double LaunchHumanCannonball(double initial_velocity, double launch_angle) {
   // (1) Convert launch_angle from degrees to radians
   //     [radian_angle = degree_launch_angle * (kPI/180)]
   // CODE HERE
+  double radian_angle;
+  radian_angle = launch_angle * (kPI/180);
 
   // (2) Compute final horizontal/x velocity
   //     [x_velocity = initial_velocity * cos(radian_angle)]
   // CODE HERE
-
+  double x_velocity, cosineResult;
+  cosineResult = cos (radian_angle * kPI / 180.0);
+  x_velocity = initial_velocity * cosineResult;
   // (3) Compute final vertical/y velocity
   //     [y_velocity = initial_velocity * sin(radian_angle) * -1]
   // CODE HERE
-
-  // (4) Compute time of flight 
+  double y_velocity;
+  y_velocity = initial_velocity * sin (radian_angle * kPI / 180.0);
+  // (4) Compute time of flight
   //     [flight_time = (y_velocity) * 2 / -9.8]
   // CODE HERE
+  double flight_time;
+  flight_time = (y_velocity) * 2 / -9.8;
 
   // (5) Compute horizontal/x distance travelled
   //     [x_distance = x_velocity * flight_time]
   // CODE HERE
+  double x_distance;
+  x_distance = x_velocity * flight_time;
 
+  return double (x_distance);
 }
 
 // For testing (DO NOT ALTER)
