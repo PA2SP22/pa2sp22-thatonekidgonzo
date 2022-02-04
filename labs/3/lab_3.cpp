@@ -167,22 +167,26 @@ int RockScissorPaper(char player_one, char player_two) {
  */
 string CharWithAsciiValueAsString(char character) {
   // CODE HERE
+  // Luke: Scope rules say the variable (stringstream) needs to be created
+  // Luke: out here
+  stringstream sout;
   if (isalnum(character) > 0) {
     
     if (isdigit(character) > 0) {
-      stringstream sout;
+      
       sout << character << " " << isdigit(character);
-      return ss.str();
-    }else (isalpha(character) > 0) {
+      // Luke: Be consistent in naming. You named it sout, not ss
+      return sout.str();
+    } else if (isalpha(character) > 0) {
       stringstream sout;
-      sout << character << " " << isalpha(character);
-      return ss.str();
+      sout << character << " " << static_cast<int>(character);
+      return sout.str();
     }
     
-  }else (ispunct(character) > 0) {
+  } else if (ispunct(character) > 0) {
       stringstream sout;
       sout << character << " " << ispunct(character);
-      return ss.str();
+      return sout.str();
   }  
   // HINT: try a stringstream here
 }
