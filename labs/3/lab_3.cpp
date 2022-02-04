@@ -194,8 +194,16 @@ string CharWithAsciiValueAsString(char character) {
  */
 string ToLower(string input) {
   // CODE HERE
-}
 
+  for (unsigned int i = 0; i < input.length(); i++) {
+    if (isupper(input.at(i)) > 0) {
+      input.at(i) = tolower(input.at(i));
+    }else {
+      input.at(i) = input.at(i);
+    }
+    return input;
+  }
+}
 /*
  * Return the input string with all characters converted to uppercase.
  * @param string input - The string that will be converted to all uppercase
