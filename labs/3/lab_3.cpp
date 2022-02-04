@@ -65,49 +65,46 @@ int main() {
  */
 string Goldilocks(string item, int number) {
   // CODE HERE
-  if (item == "porridge") {
-    if (number == 1) {
-      cout >> "This porridge is too hot";
-   }else if (number == 2) {
-      cout >> "This porridge is too cold";
-   }else if (number == 3) {
-      cout >> "This porridge is just right";
-   } else {
-      cout >> "This porridge is just right";
-   }
-  }else if (item == "chair") {
-    if (number == 1) {
-      cout >> "This chair is too big";
-    }else if (item == 2) {
-      cout >> "This chair is too soft";
-    }else if (item == 3) {
-      cout >> "This chair is just right";
-    }else {
-      cout >> "This chair is just right";
-    }
-  }else if (item == "bed") {
-    if (number == 1) {
-      cout >> "This bed is too hard";
-    }else if (number == 2) {
-      cout >> "This bed is too soft";
-    }else if (number == 3) {
-      cout >> "This bed is just right";
-    }else {
-      cout >> "This bed is just right";
-    }
-  }else {
-    if (number == 1) {
-      cout >> "This bed is too hard";
-    }else if (number == 2) {
-      cout >> "This bed is too soft";
-    }else if (number == 3) {
-      cout >> "This bed is just right";
-    }else {
-      cout >> "This bed is just right";
-    }
-  } 
-}
-
+  if (item == "porridge" && number == 1){
+    return "This porridge is too hot";
+    
+  }else if (item == "porridge" && number == 2){
+    return "This porridge is too cold";
+    
+  }else if (item == "porridge" && number == 3){
+    return "This porridge is just right";
+    
+  }else if (item == "porridge" && number != (1 || 2 || 3)){
+    return "This porridge is just right";
+    
+  }else if (item == "chair" && number == 1){
+    return "This chair is too big";
+    
+  }else if (item == "chair" && number == 2){
+    return "This chair is too small";
+    
+  }else if (item == "chair" && number == 3){
+    return "This chair is just right";
+    
+  }else if (item == "chair" && number != (1 || 2 || 3)){
+    return "This chair is just right";
+    
+  }else if (item == "bed" && number == 1){
+    return "This bed is too hard";
+    
+  }else if (item == "bed" && number == 2){
+    return "This bed is too soft";
+    
+  }else if (item == "bed" && number == 3){
+    return "This bed is just right";
+    
+  }else if (item == "bed" && number != (1 || 2 || 3)){
+    return "This bed is just right";
+    
+  }else if (item != "porridge" && item != "chair" && item != "bed") {
+    item = "bed";
+  }  
+  }  
 /*
  * Compute the outcome of a round of a rock-scissor-paper game. Lowercase or
  * uppercase values for player_one and player_two arguments are acceptable.
@@ -123,6 +120,40 @@ string Goldilocks(string item, int number) {
 int RockScissorPaper(char player_one, char player_two) {
   // YOU MUST USE A SWITCH IN THIS FUNCTION
   // CODE HERE
+  switch (player_one) {
+    case ('R'):
+    case ('r'):
+    if (player_two == 'R' || player_two == 'r') {
+      return  3;
+    }else if (player_two == 'P' || player_two == 'p') {
+      return  2;
+    }else if (player_two == 'S' || player_two == 's') {
+      return  1;
+    }  
+    break;
+    case ('P'):
+    case ('p'):
+    if (player_two == 'R' || player_two == 'r') {
+      return  1;
+    }else if (player_two == 'P' || player_two == 'p') {
+      return  3;
+    }else if (player_two == 'S' || player_two == 's') {
+      return  2;
+    }
+    break;
+    case ('S'):
+    case ('s'):
+    if (player_two == 'R' || player_two == 'r') {
+      return  2;
+    }else if (player_two == 'P' || player_two == 'p') {
+      return  1;
+    }else if (player_two == 'S' || player_two == 's') {
+      return  3;
+    }
+    break;
+    default:
+      cout << "unkown";
+  }
 }
 
 /*
@@ -136,7 +167,23 @@ int RockScissorPaper(char player_one, char player_two) {
  */
 string CharWithAsciiValueAsString(char character) {
   // CODE HERE
-
+  if (isalnum(character) > 0) {
+    
+    if (isdigit(character) > 0) {
+      stringstream sout;
+      sout << character << " " << isdigit(character);
+      return ss.str();
+    }else (isalpha(character) > 0) {
+      stringstream sout;
+      sout << character << " " << isalpha(character);
+      return ss.str();
+    }
+    
+  }else (ispunct(character) > 0) {
+      stringstream sout;
+      sout << character << " " << ispunct(character);
+      return ss.str();
+  }  
   // HINT: try a stringstream here
 }
 
