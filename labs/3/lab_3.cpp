@@ -220,7 +220,7 @@ char GetCharacter(string input, int char_index) {
   // CODE HERE
   int string_length;
   string_length = input.length();
-  if (char_index < string_length || char_index == 0) {
+  if (char_index < string_length && char_index >= 0) {
     return input.at(char_index);
   } else {
      return '\0';
