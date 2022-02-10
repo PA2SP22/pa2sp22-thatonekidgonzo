@@ -26,7 +26,7 @@ using std::stringstream;
  * @return string - A string containing the contents of values separated by the
  *                  specified separator character
  */
-string PrepareForDisplay(int values[], int size, char separator);
+string PrepareForDisplay(int values[], int size, char separator = ',');
 
 /*
  * Test to see if an array contains a specified value.
@@ -88,14 +88,36 @@ int main() {
 
 // CODE HERE (FUNCTION DEFINITIONS)
  string PrepareForDisplay(int values[], int size, char separator) { 
-  stringstream sout;
+  stringstream ss; 
   int i;
-  for (i = 0; i < size - 1; i++) {
-    sout << values[i] << ',';
-  }
-    sout << values[size - 1];
-    return sout.str();
+for (i = 0; i < size - 1; i++) {
+  ss << values[i] << separator;
 }
+  ss << values[i];
+  return ss.str();
+}
+
+
+bool HasValue(int values[], int size, int value) {
+  return true;
+}
+
+
+int ValueAt(int values[], int size, int index, bool& error) {
+  return 0;
+}
+
+
+int Sum(int values[], int size) {
+  return 0;
+}
+
+
+
+bool SwapValues(int values[], int size, int index1, int index2) {
+  return true;
+}
+
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
