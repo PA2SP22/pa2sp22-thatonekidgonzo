@@ -1,6 +1,6 @@
 /*
  * Name        : lab_4.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Use branching statements, looping statements and string and
  *               character functions to complete the functions
  */
@@ -66,6 +66,9 @@ int main() {
  */
 string MakeString(string label, double value, char separator) {
   // CODE HERE
+  stringstream ss;
+  ss << label << " " << separator << " " << value;
+  return ss.str();
 }
 
 /*
@@ -78,6 +81,16 @@ string MakeString(string label, double value, char separator) {
  */
 char StringToChar(string value) {
   // CODE HERE
+  char cvalue = 0;
+  stringstream converter(value);
+  converter.exceptions(ios_base::failbit);
+
+  try {
+    converter >> cvalue;
+  } catch (ios_base::failure f) {
+  }
+
+  return cvalue;
 }
 
 /*
@@ -114,8 +127,17 @@ int StringToInt(string value) {
  */
 double StringToDouble(string value) {
   // CODE HERE
-}
+  double dvalue = 0;
+  stringstream converter(value);
+  converter.exceptions(ios_base::failbit);
 
+  try {
+    converter >> dvalue;
+  } catch (ios_base::failure f) {
+  }
+
+  return dvalue;
+}
 /*
  * Useful when accepting input from stdin using the getline function.
  * Convert a string containing an boolean value (such as a string captured from
@@ -129,6 +151,13 @@ double StringToDouble(string value) {
  */
 bool StringToBool(string value) {
   // CODE HERE
+  if (value.at(0) == 'T' || value.at(0) == 't') {
+    return true;
+  } else if (value.at(0) == 'F' || value.at(0) == 'f') {
+    return false;
+  } else {
+    return false;
+  }
 }
 
 // For testing (DO NOT ALTER)
