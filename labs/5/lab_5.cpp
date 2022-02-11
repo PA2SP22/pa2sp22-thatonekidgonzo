@@ -87,8 +87,8 @@ int main() {
 }
 
 // CODE HERE (FUNCTION DEFINITIONS)
- string PrepareForDisplay(int values[], int size, char separator) { 
-  stringstream ss; 
+  string PrepareForDisplay(int values[], int size, char separator) {
+  stringstream ss;
   int i;
 for (i = 0; i < size - 1; i++) {
   ss << values[i] << separator;
@@ -99,23 +99,52 @@ for (i = 0; i < size - 1; i++) {
 
 
 bool HasValue(int values[], int size, int value) {
-  return true;
+  int i;
+  int value_to_check;
+  for (i = 0; i < size; i++) {
+    value_to_check = values[i];
+  }
+  if (value_to_check == value) {
+      return true;
+    } else {
+      return false;
+    }
 }
 
 
 int ValueAt(int values[], int size, int index, bool& error) {
-  return 0;
+  if (index > size - 1) {
+    error = true;
+    return 0;
+  } else {
+    error = false;
+    return values[index];
+  }
 }
 
 
 int Sum(int values[], int size) {
-  return 0;
+  int i;
+  int added_values;
+  added_values = 0;
+  for (i = 0; i > size; i++) {
+  added_values = values[i] + added_values;
+  }
+  return added_values;
 }
 
 
 
 bool SwapValues(int values[], int size, int index1, int index2) {
+  if (index1 > size || index2 > size || index1 < 0 || index2 < 0) {
+    return false;
+  } else {
+  int storage_for_switch;
+  storage_for_switch = values[index1];
+  values[index1] = values[index2];
+  values[index2] = storage_for_switch;
   return true;
+  }
 }
 
 
