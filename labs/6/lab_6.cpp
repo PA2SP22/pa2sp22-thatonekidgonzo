@@ -1,6 +1,6 @@
 /*
  * Name        : lab_6.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Practicing Functions
  */
 
@@ -23,7 +23,7 @@ using std::string;
  * Display "Hello world!" to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-void Hello();
+  void Hello();
 
 /*
  * function name: PrintMessage
@@ -34,6 +34,7 @@ void Hello();
  * Display message to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+  void PrintMessage(const string &string_message);
 
 /*
  * function name: GetAnswer
@@ -44,7 +45,7 @@ void Hello();
  * Return the value 42
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+  int GetAnswer();
 /*
  * function name: FindLarger
  * parameters: int (const call-by-reference), int (const call-by-reference)
@@ -55,6 +56,7 @@ void Hello();
  * if the values are equivalent.
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+  int FindLarger(const int first_number, const int second_number);
 
 /*
  * function name: GetStats
@@ -69,7 +71,7 @@ void Hello();
  * characters in the first parameter (string)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+  int GetStats(const string &string_to_test, int &num_of_upp, int &num_of_low);
 /*
  * function name: BuildMessage
  * parameters: string (const call-by-reference), bool (const call-by-reference)
@@ -83,7 +85,7 @@ void Hello();
  * "Message: empty".
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+  string BuildMessage(const string &to_check = "", const bool &conv = false);
 
 // For testing (DO NOT ALTER)
 #include <cctype>
@@ -108,6 +110,59 @@ void Hello() {
   cout << "Hello world!";
 }
 
+
+  void PrintMessage(const string &string_message) {
+    cout << string_message;
+  }
+
+  int GetAnswer() {
+    return 42;
+  }
+
+
+  int FindLarger(const int first_number, const int second_number) {
+    if (first_number > second_number) {
+      return first_number;
+    } else {
+      return second_number;
+    }
+  }
+
+
+  int GetStats(const string &string_to_test, int &num_of_upp, int &num_of_low) {
+    num_of_low = 0;
+    num_of_upp = 0;
+    for (unsigned int i = 0; i < string_to_test.length(); i++) {
+      if (isupper(string_to_test.at(i))) {
+        num_of_upp++;
+      } else if (islower(string_to_test.at(i))) {
+        num_of_low++;
+      } else {
+      }
+    }
+    return string_to_test.length();
+  }
+
+
+  string BuildMessage(const string &to_check, const bool &conv) {
+    std::stringstream ss;
+  if (conv == true && to_check != "") {
+     ss << "Message: ";
+     for (unsigned int i = 0; i < to_check.length(); i++) {
+       ss << static_cast< char >(toupper(to_check.at(i)));
+     }
+     return ss.str();
+
+  } else if (conv == false && to_check != "") {
+    ss << "Message: ";
+    ss << to_check;
+    return ss.str();
+  } else if (to_check == "" && conv == true) {
+    return "Message: empty";
+  } else {
+    return "Message: empty";
+  }
+  }
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
