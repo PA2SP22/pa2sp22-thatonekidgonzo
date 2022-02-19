@@ -16,7 +16,7 @@ using std::string;
 // Declare Function Prototypes Here (What goes above main)
 bool CheckAlphabetic(const string &to_check);
 
-bool EncryptString(string &string_to_encrypt, int shift_number);
+bool EncryptString(string &to_encrypt, int shift);
 
 bool DecryptString(string string_to_decrypt, int shifted_number);
 
