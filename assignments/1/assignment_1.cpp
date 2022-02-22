@@ -39,23 +39,27 @@
 */
   bool EncryptString(string &to_encrypt, int shift) {
     if (CheckAlphabetic(to_encrypt)) {
-      shift %=26;
+      shift %= 26;
   for (unsigned int i = 0; i < to_encrypt.length(); i++) {
     if (isupper(to_encrypt.at(i))) {
-    if ((to_encrypt.at(i) + shift > 90) || (to_encrypt.at(i) + shift < 65)) {
-        to_encrypt.at(i) = to_encrypt.at(i) - (26 - shift);
-        } else {
-          to_encrypt.at(i) = to_encrypt.at(i) + shift;
-          }
-        } else {
-  if ((to_encrypt.at(i) + shift) > 122 || (to_encrypt.at(i) + shift < 97)) {
-  to_encrypt.at(i) = to_encrypt.at(i) + (26 + shift);
-    } else {
-      to_encrypt.at(i) = to_encrypt.at(i) + shift;
-        }
-      }
+    if ((to_encrypt.at(i) + shift > 'Z')) {
+  to_encrypt.at(i) = to_encrypt.at(i) + shift - 26;
+  } else if (to_encrypt.at(i) + shift < 65) {
+  to_encrypt.at(i) = to_encrypt.at(i) + shift + 26;
+  } else {
+  to_encrypt.at(i) = to_encrypt.at(i) + shift;
+  }
+  } else {
+  if ((to_encrypt.at(i) + shift) > 'z') {
+  to_encrypt.at(i) = to_encrypt.at(i) + shift - 26;
+  } else if (to_encrypt.at(i) + shift < 97) {
+  to_encrypt.at(i) = to_encrypt.at(i) + shift + 26;
+  } else {
+  to_encrypt.at(i) = to_encrypt.at(i) + shift;
+  }
     }
-    return true;
+      }
+      return true;
     } else {
       return false;
     }
@@ -67,10 +71,32 @@
    Parameters string(by reference)   int
 
 */
-  bool DecryptString(string string_to_decrypt, int shifted_number) {
-     string_to_decrypt;
-     shifted_number;
-    return false;
+  bool DecryptString(string &to_decrypt, int shift) {
+    if (CheckAlphabetic(to_decrypt)) {
+      shift %= 26;
+      for (unsigned int i = 0; i < to_decrypt.length(); i++) {
+        if (isupper(to_decrypt.at(i))) {
+          if (to_decrypt.at(i) - shift > 'Z') {
+            to_decrypt.at(i) = to_decrypt.at(i) - shift + 26;
+          } else if (to_decrypt.at(i) - shift < 65) {
+            to_decrypt.at(i) = to_decrypt.at(i) - shift + 26;
+          } else {
+            to_decrypt.at(i) = to_decrypt.at(i) - shift;
+          }
+        } else {
+          if ((to_decrypt.at(i) - shift) > 'z') {
+            to_decrypt.at(i) = to_decrypt.at(i) - shift - 26;
+          } else if ((to_decrypt.at(i) - shift) < 97) {
+            to_decrypt.at(i) = to_decrypt.at(i) - shift + 26;
+          } else {
+            to_decrypt.at(i) = to_decrypt.at(i) - shift;
+          }
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
   }
 
 /* Function to compute the mean average of the values in the array value[] . 

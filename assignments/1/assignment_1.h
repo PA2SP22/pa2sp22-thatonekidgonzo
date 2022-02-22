@@ -18,7 +18,7 @@ bool CheckAlphabetic(const string &to_check);
 
 bool EncryptString(string &to_encrypt, int shift);
 
-bool DecryptString(string string_to_decrypt, int shifted_number);
+bool DecryptString(string &to_decrypt, int shift);
 
 double ComputeAverage(double value[], unsigned int size_of_array);
 
