@@ -6,7 +6,7 @@ Temperature::Temperature() {
 }
 
 Temperature::Temperature(double kelvin) {
-  kelvin_ = kelvin;
+ kelvin_ = kelvin; 
 }
  
 Temperature::Temperature(double temp, char unit) {
@@ -25,27 +25,29 @@ void Temperature::SetTempFromKelvin(double kelvin) {
 }
 
 void Temperature::SetTempFromCelsius(double celsius) {
- kelvin_ = celsius;
+ kelvin_ = celsius + 273.15;
 }
 
 void Temperature::SetTempFromFahrenheit(double fahrenheit) {
- kelvin_ = fahrenheit;
+ kelvin_ = (5.0 * (fahrenheit - 32) / 9) + 273.15;
 }
 
 double Temperature::GetTempAsKelvin() const {
+
   return kelvin_;
 }
 
 double Temperature::GetTempAsCelsius() const {
-  
+  kelvin_ = kelvin_ + 273.15;
  return kelvin_;
 }
 
 double Temperature::GetTempAsFahrenheit() const {
+ kelvin_ = ((kelvin_ * 9) / 5) + 32;
  return kelvin_;
 }
 
-string Temperature::ToString(char unit = 'K') const {
-  unit = 'K'
+string Temperature::ToString(char unit) const {
+  unit = 'K';
   return "";
 }
