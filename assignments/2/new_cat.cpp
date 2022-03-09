@@ -21,32 +21,35 @@ int main(int argc, char *argv[]) {
       cout << line << endl;
      }
   } else {
+    ifstream fin;
     string to_check;
+    // Loop to see if the files exist
     for (int i = 1; i < argc; i++) {
-    if (cin.fail()) {
-      cerr << "File name not valid" << endl;
-      exit(1);
+      // Open the file
+      fin.open(argv[i]);
+      // Check to see if it exists
+      if (fin.fail()) {
+        cerr << "File name not valid" << endl;
+        exit(1);
+      }
+      // Close the file
+      fin.close();
+    }
+    for (int i = 1; i < argc; i++) {
+     // Open the file
+      fin.open(argv[i]);
+     // Ouput its contents
+     getline(cin,argv[i]);
+     cout << argv[i] << endl;
+     // Close the file
+     fin.close();
     }
   }
-   for (int i = 1; i < argc; i++) {
-     if (cin.)
-   }
-    }
     
    //advanced i/o
       
-    }
+}
       
-    }
-    }
-  
-  }
- 
-// string output;
-// for (int i = 1; i < argc; i++) {
-// output.append(argv[i]);
-// }
-// cout << output << endl;
 
     
   
