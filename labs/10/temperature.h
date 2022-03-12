@@ -3,7 +3,7 @@
  * Author      : Gonzalo Garcia
  * Description : Class Header File
  */
-
+#include <iomanip>
 #include <string>
 #include <sstream>
 using std::string;
