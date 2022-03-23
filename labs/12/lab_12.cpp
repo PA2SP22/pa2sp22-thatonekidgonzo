@@ -1,6 +1,6 @@
 /*
  * Name        : lab_12.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Working with Pointers and Dynamic Variables / Arrays
  */
 #include <iostream>
@@ -66,7 +66,64 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITIONS
+int* MakeDynoIntArray(unsigned int size) {
+  int *array = new int[size];
 
+  if (array == NULL) {
+    throw "NULL ARRAY REFERENCE";
+  }
+
+  return array;
+}
+
+
+int Sum(int* the_array, unsigned int array_size) {
+  if (the_array == NULL) {
+    throw "NULL ARRAY REFERENCE";
+  }
+
+  int sum_of_array = 0;
+
+  for (unsigned int i = 0; i < array_size; i++) {
+    sum_of_array = the_array[i] + sum_of_array;
+  }
+
+  return sum_of_array;
+}
+
+
+int Max(int* the_array, unsigned int array_size) {
+  if (the_array == NULL) {
+    throw "NULL ARRAY REFERENCE";
+  }
+
+  int max_size;
+  max_size = the_array[0];
+
+  for (unsigned int i = 1; i < array_size; i++) {
+    if (the_array[i] > the_array[0]) {
+      max_size = the_array[i];
+    }
+    }
+    return max_size;
+  }
+
+
+int Min(int* the_array, unsigned int array_size) {
+  if (the_array == NULL) {
+    throw "NULL ARRAY REFERENCE";
+  }
+
+  int min_size;
+  min_size = the_array[0];
+
+  for (unsigned int i = 1; i < array_size; i++) {
+    if (the_array[i] < min_size) {
+      min_size = the_array[i];
+    }
+  }
+  return min_size;
+}
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
