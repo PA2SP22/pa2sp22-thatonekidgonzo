@@ -56,14 +56,14 @@ void SetTodoItem(bool completed) {
 
   
 //Member Func #1  
-  string ToFile();
+  string TodoItem::ToFile();
   
   private:
   string description_;
   int priority_;
   bool completed_;
 //Private Member Function #1   
-  string Scrub(); 
+  string TodoItem::Scrub(); 
 };
 
 
