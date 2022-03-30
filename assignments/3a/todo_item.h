@@ -18,7 +18,7 @@ class TodoItem {
   public:
   
 //constructor #1
-  TodoItem::TodoItem(string description, int priority, bool completed) {
+  TodoItem(string description, int priority, bool completed) {
     description_ = description;
     priority_ = priority;
     completed_ = completed;
@@ -44,14 +44,14 @@ void SetTodoItem(bool completed);
 
   
 //Member Func #1  
-  string TodoItem::ToFile();
+  string ToFile();
   
   private:
   string description_;
   int priority_;
   bool completed_;
 //Private Member Function #1   
-  string TodoItem::Scrub(); 
+  string Scrub(); 
 };
 
 
