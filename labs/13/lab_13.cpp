@@ -1,6 +1,6 @@
 /*
  * Name        : lab_13.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo
  * Description : Working with Pointers and Dynamic Objects
  */
 #include <iostream>
@@ -84,6 +84,61 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+string* MakeDynoString(string contents) {
+  return new string(contents);
+}
+
+
+void ClearDynoString(string *&the_string) {
+  delete the_string;
+  the_string = NULL;
+}
+
+
+unsigned int CountChars(string* theString, unsigned int &alpha,
+                        unsigned int &num) {
+  if (theString == NULL) {
+    throw "NULL STRING REFERENCE";
+}
+  alpha = 0;
+  num = 0;
+  for (unsigned int i = 0; i < theString->length(); i++) {
+    if (isalpha(theString->at(i))) {
+     alpha++;
+  } else if (isdigit(theString->at(i))) {
+     num++;
+  }
+}
+
+  return theString->length();
+}
+
+
+bool FindWord(string *the_string, string the_word) {
+  if (the_string == NULL) {
+    throw "NULL STRING REFERENCE";
+}
+  if (the_string->find(the_word) != string::npos) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+bool ReplaceWord(string* the_string, string old_word, string new_word) {
+  if (the_string == NULL) {
+    throw "NULL STRING REFERENCE";
+}
+  if (the_string->find(old_word) != string::npos) {
+    the_string->replace(the_string->find(old_word), string(old_word).size(),
+    new_word);
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 
 // For testing (DO NOT ALTER)
