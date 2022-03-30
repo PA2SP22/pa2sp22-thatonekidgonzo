@@ -18,29 +18,41 @@ class TodoItem {
   public:
   
 //constructor #1
-  TodoItem(string description, int priority, bool completed) {
-    description_ = description;
-    priority_ = priority;
-    completed_ = completed;
+  TodoItem(string description, int priority, bool completed)
+   : description_(description)
+    priority_(priority)
+    completed_(comleted) {
   }
   
 //Accessor #1
-string GetTodoItem();
+string GetTodoItem() {
+  return description_;
+}
 
 //Accessor #2
-int GetTodoItem();
+int GetTodoItem() {
+  return priority_;
+}
 
 //Accessor #3
-bool GetTodoItem();
+bool GetTodoItem() {
+  return completed_;
+}
 
 //Mutator #1
-void SetTodoItem(string description);
+void SetTodoItem(string description) {
+  description_ = description;
+}
 
 //Mutator #2
-void SetTodoItem(int priority);
+void SetTodoItem(int priority) {
+  priority_ = priority;
+}
 
 //Mutator #3
-void SetTodoItem(bool completed);
+void SetTodoItem(bool completed) {
+  completed_ = completed;
+}
 
   
 //Member Func #1  
