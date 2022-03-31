@@ -81,16 +81,11 @@ string MakeString(string label, double value, char separator) {
  */
 char StringToChar(string value) {
   // CODE HERE
-  char cvalue = 0;
-  stringstream converter(value);
-  converter.exceptions(ios_base::failbit);
-
-  try {
-    converter >> cvalue;
-  } catch (ios_base::failure f) {
+  if (value.length() == 1) {
+    return value.at(0);
+  } else {
+    return '\0';
   }
-
-  return cvalue;
 }
 
 /*
@@ -151,13 +146,10 @@ double StringToDouble(string value) {
  */
 bool StringToBool(string value) {
   // CODE HERE
-  if (value.at(0) == 'T' || value.at(0) == 't') {
+  if (value[0] == 'T' || value[0] == 't') {
     return true;
-  } else if (value.at(0) == 'F' || value.at(0) == 'f') {
-    return false;
-  } else {
-    return false;
   }
+    return false;
 }
 
 // For testing (DO NOT ALTER)
