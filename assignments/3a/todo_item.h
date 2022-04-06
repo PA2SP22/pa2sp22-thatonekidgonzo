@@ -24,33 +24,33 @@ TodoItem();
 TodoItem(string description = "", int priority = 1, bool completed = false);
    
 //Accessor #1
-string GetDescription() const;
+string description() const;
 
 //Accessor #2
-int GetPriority() const;
+int priority() const;
 
 //Accessor #3
-bool GetCompleted() const;
+bool completed() const;
 
 //Mutator #1
-void SetDescriptionMod(string description);
+void set_description(string description);
 //Mutator #2
 
-void SetPriorityMod(int priority);
+void set_priority(int priority);
 
 //Mutator #3
-void SetCompletedMod(bool completed);
+void set_completed(bool completed);
 
   
 //Member Func #1  
-  string ToFile(); 
+string ToFile(); 
   
   private:
   string description_;
   int priority_;
   bool completed_;
 //Private Member Function #1   
-  string Scrub();
+string Scrub(string to_decode);
 };
 
 
