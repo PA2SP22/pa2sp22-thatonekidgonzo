@@ -17,53 +17,40 @@ using std::stringstream;
 class TodoItem {
   public:
   
-//constructor #1
-  TodoItem(string description, int priority, bool completed)
-   : description_(description)
-    priority_(priority)
-    completed_(comleted) {
-  }
-  
+//constructor #1  
+TodoItem();
+
+//constructor #2
+TodoItem(string description = "", int priority = 1, bool completed = false);
+   
 //Accessor #1
-string GetTodoItem() {
-  return description_;
-}
+string GetDescription() const;
 
 //Accessor #2
-int GetTodoItem() {
-  return priority_;
-}
+int GetPriority() const;
 
 //Accessor #3
-bool GetTodoItem() {
-  return completed_;
-}
+bool GetCompleted() const;
 
 //Mutator #1
-void SetTodoItem(string description) {
-  description_ = description;
-}
-
+void SetDescriptionMod(string description);
 //Mutator #2
-void SetTodoItem(int priority) {
-  priority_ = priority;
-}
+
+void SetPriorityMod(int priority);
 
 //Mutator #3
-void SetTodoItem(bool completed) {
-  completed_ = completed;
-}
+void SetCompletedMod(bool completed);
 
   
 //Member Func #1  
-  string TodoItem::ToFile();
+  string ToFile(); 
   
   private:
   string description_;
   int priority_;
   bool completed_;
 //Private Member Function #1   
-  string TodoItem::Scrub(); 
+  string Scrub();
 };
 
 
