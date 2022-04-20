@@ -10,6 +10,8 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+using std::ifstream;
+using std::cerr;
 
 int main(int argc, char *argv[]) {
   if (argc == 1) {
@@ -39,8 +41,8 @@ int main(int argc, char *argv[]) {
      // Open the file
       fin.open(argv[i]);
      // Ouput its contents
-     getline(cin,argv[i]);
-     cout << argv[i] << endl;
+     getline(cin,fin);
+     cout << fin << endl;
      // Close the file
      fin.close();
     }

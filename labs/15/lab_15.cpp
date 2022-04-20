@@ -1,6 +1,6 @@
 /*
  * Name        : lab_15.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Working with Insertion and Shell Sort
  */
 #include <iostream>
@@ -61,6 +61,22 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+int InsertionSort(int the_array[], unsigned int size) {
+  int passes = 0;
+  for (unsigned int i = 0; i <= (size - 1); i++) {
+    unsigned int j = i;
+    passes = passes + 1;
+    while ((j > 0) && (the_array[j] < the_array[j - 1])) {
+      SwapValues(the_array[j], the_array[j - 1]);
+      j = j - 1;
+    }
+  }
+  return passes;
+}
+
+int ShellSort(int the_array[], unsigned int size) {
+  
+}
 
 
 void SwapValues(int &value_1, int &value_2) {
@@ -69,6 +85,10 @@ void SwapValues(int &value_1, int &value_2) {
     cout << value_1 << " " << value_2 << endl;
   }
   // Code SWAP Algorithm Here
+  int placeholder;
+  placeholder = value_1;
+  value_1 = value_2;
+  value_2 = placeholder;
 }
 
 // For testing (DO NOT ALTER)

@@ -62,12 +62,15 @@ bool ProcessFile(string filename) {
   ifstream fin(filename);
   if (fin.fail()) {
     std::cerr << "Error opening one of the files.\n";
-    exit(1);
+    //exit(1);
     return false;
   }
 
   while (!fin.eof()) {
     getline(fin, line);
+    if (!fin) { // this happens because the file is not at the end end when it tries to read the file.
+      break;
+    }
     if (line == "10") {
       OnTen();
     } else if (line == "20") {

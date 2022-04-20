@@ -1,6 +1,6 @@
 /*
  * Name        : lab_14.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Working with Bubble and Selection Sort
  */
 #include <iostream>
@@ -68,6 +68,55 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+int BubbleSort(int the_array[], unsigned int size) {
+  int passes = 0;
+  for (unsigned int i = (size - 1); i >= 1; i--) {
+    passes = passes + 1;
+    for (unsigned int j = 0; j <= i - 1; j++) {
+      if (the_array[j] > the_array[j + 1]) {
+        SwapValues(the_array[j], the_array[j + 1]);
+      }
+    }
+  }
+  return passes;
+}
+
+
+int OptimizedBubbleSort(int the_array[], unsigned int size) {
+  int passes = 0;
+  bool swapped;
+  for (unsigned int i = (size - 1); i >= 1; i--) {
+    swapped = false;
+    passes = passes + 1;
+    for (unsigned int j = 0; j <= (i - 1); j++) {
+      if (the_array[j] > the_array[j + 1]) {
+        SwapValues(the_array[j], the_array[j + 1]);
+        swapped = true;
+      }
+      if (swapped == false) {
+        return passes;
+      }
+    }
+  }
+  return passes;
+}
+
+int SelectionSort(int the_array[], unsigned int size) {
+  int passes = 0;
+  for(unsigned int i = 0; i < (size - 1); i++) {
+    unsigned int min_index = i;
+      for(unsigned int j = (i + 1); j < size; j++) {
+        if (the_array[min_index] > the_array[j]) {
+          min_index = j;
+        }
+      }
+      if (min_index != i) {
+        SwapValues(the_array[i], the_array[min_index]);
+           passes = passes + 1;
+      }
+  }
+  return passes;
+}
 
 
 void SwapValues(int &value_1, int &value_2) {
@@ -76,6 +125,11 @@ void SwapValues(int &value_1, int &value_2) {
     cout << value_1 << " " << value_2 << endl;
   }
   // Code SWAP Algorithm Here
+  int placeholder;
+  placeholder = value_1;
+  value_1 = value_2;
+  value_2 = placeholder;
+  
 }
 
 // For testing (DO NOT ALTER)
