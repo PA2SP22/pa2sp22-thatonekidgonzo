@@ -32,6 +32,10 @@ void TodoList::AddItem(TodoItem* item) {
 }
 // Mem Func #2 //
 void TodoList::DeleteItem(unsigned int location) {
+<<<<<<< HEAD
+=======
+  // Luke: Remember location is human readable. So we need to -1 to it
+>>>>>>> 5c6331ebc522d4d6f28652a9f99aa6004cba05a5
     if (location <= (size_) && location > 0) {
       delete list_[location - 1];
     for (unsigned int i = location - 1; i < (size_ - 1); i++) {
