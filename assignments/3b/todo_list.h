@@ -1,5 +1,5 @@
 
-
+#include <iostream>
 #include <iomanip>
 #include <string>
 #include <sstream>
@@ -15,11 +15,10 @@ using std::endl;
 
 class TodoList {
  public:
- 
- // Constructor #1 //
+// Constructor #1 //
 TodoList();
- 
- // Destructor #1 //
+
+// Destructor #1 //
 ~TodoList();
 
 // Memeber Func #1 //
@@ -44,19 +43,18 @@ void Sort();
 string ToFile();
 
 // Overloaded Friend operator //
-friend std::ostream &operator <<(std::ostream &output, const TodoList &item);
-  
+friend std::ostream &operator<<(std::ostream &output, TodoList &item);
+
  private:
- TodoItem **list_;
- unsigned int cap_;
- unsigned int size_;
- 
-// Private  Mem Func #1 // 
-void IncreaseCap(); 
+  TodoItem **list_;
+  unsigned int cap_;
+  unsigned int size_;
+
+// Private  Mem Func #1 //
+void IncreaseCap();
 
 // Private Mem Func #2 //
-void Compact();
-
+void Compact(unsigned int location);
 };
 
 // Rest of Header Guard
