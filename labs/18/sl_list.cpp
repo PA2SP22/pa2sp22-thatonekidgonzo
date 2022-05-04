@@ -2,28 +2,43 @@
 
 // Constructor //
 SLList::SLList() {
- head_ = NULL;
- size_ = 0;
+  head_ = NULL;
+  size_ = 0;
 }
 // Destructor //
 SLList::~SLList() {
-  
+  Clear();
 }
 
 void SLList::InsertHead(int contents) {
   SLNode* nn = new SLNode();
+  size_++;
+  // set_contents(int contents)
+  nn->set_contents(contents);
   nn->set_next_node(head_);
   head_ = nn;
-  size_++;
 }
 
 
 void SLList::RemoveHead() {
-  
+  if (size_ > 0) {
+  SLNode* it = head_;
+  head_ = head_->next_node();
+  delete it;
+  size_--;
+  }
 }
 
 void SLList::Clear() {
-  
+  if (size_ > 0) {
+    SLNode* it = head_;
+    while (it != NULL) {
+      head_ = head_->next_node();
+      delete it;
+      size_--;
+      it = head_;
+    }
+  }
 }
 
 unsigned int SLList::size() const {
@@ -32,10 +47,17 @@ unsigned int SLList::size() const {
 
 string SLList::ToString() const {
   stringstream ss;
-  for (unsigned int i = 0; i < (size_ - 1); i++) {
-    ss << "(i + 1),";
+  if (head_ == NULL) {
+    return "";
   }
-  ss << "(size - 1) ";
+  SLNode* it = head_;
+  while (it != NULL) {
+  if (it->next_node() == NULL) {
+     ss << it->contents();
+  } else {
+     ss << it->contents() << ", ";
+  }
+  it = it->next_node();
+  }
   return ss.str();
 }
-

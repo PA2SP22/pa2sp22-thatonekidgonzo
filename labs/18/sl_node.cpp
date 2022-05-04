@@ -13,7 +13,7 @@ SLNode::SLNode(int contents) {
 }
 
 // Mutator #1
-void SLNode::set_contents (int contents) {
+void SLNode::set_contents(int contents) {
   contents_ = contents;
 }
 
@@ -22,7 +22,7 @@ void SLNode::set_next_node(SLNode* content) {
   next_node_ = content;
 }
 
-// 
+//
 int SLNode::contents() const {
   return contents_;
 }
@@ -34,6 +34,4 @@ SLNode* SLNode::next_node() const {
 
 // Destructor
 SLNode::~SLNode() {
-  
 }
-
