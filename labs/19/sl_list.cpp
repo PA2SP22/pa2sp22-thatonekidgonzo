@@ -17,11 +17,14 @@ void SLList::InsertHead(int contents) {
   // set_contents(int contents)
   nn->set_contents(contents);
   nn->set_next_node(head_);
+  if (head_ == NULL) {
+    tail_ = nn;
+  }
   head_ = nn;
-}
+  }
 
 void SLList::InsertTail(int contents) {
-  if (head_ == NULL){
+  if (head_ == NULL) {
   InsertHead(contents);
 } else {
   SLNode* nn = new SLNode(contents);
@@ -56,7 +59,6 @@ void SLList::RemoveTail() {
       tail_ = it;
       size_--;
     }
-     
   }
 
 int SLList::GetHead() const {

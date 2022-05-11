@@ -33,9 +33,6 @@ class SLNode {
   // Destructors
   ~SLNode();
 
-
-
-
  private:
   SLNode *next_node_;
   int contents_;

@@ -25,19 +25,18 @@ class SLList {
 
   //         //
   void InsertHead(int contents);
-  
+
   void InsertTail(int contents);
 
   //        //
   void RemoveHead();
 
   void RemoveTail();
-  
+
   int GetHead() const;
-  
+
   int GetTail() const;
-  
-  
+
   //           //
   void Clear();
 
