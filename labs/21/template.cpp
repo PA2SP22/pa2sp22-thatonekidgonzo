@@ -27,7 +27,8 @@ using std::stringstream;
  *                  specified separator character
  */
   template <typename Type>
-string PrepareForDisplay(Type values[], unsigned int size, char separator = ',') {
+string PrepareForDisplay(Type values[], unsigned int size,
+char separator = ',') {
   stringstream ss;
   for (unsigned int i = 0; i < size - 1; i++) {
   ss << std::fixed << std::setprecision(2) << values[i] << separator;
@@ -50,11 +51,11 @@ bool HasValue(Type values[], unsigned int size, Type value_to_find) {
   for (unsigned int i = 0; i < size; i++) {
     if (values[i] == value_to_find) {
       return true;
-    } 
+    }
   }
-   return false;
-}  
-  
+  return false;
+}
+
 
 /*
  * Function Name: ValueAt
@@ -71,7 +72,8 @@ bool HasValue(Type values[], unsigned int size, Type value_to_find) {
  *               you can return T()
  */
   template <typename Type>
-Type ValueAt(Type values[], unsigned int size, unsigned int index, bool &error) {
+Type ValueAt(Type values[], unsigned int size, unsigned int index,
+bool &error) {
   if (index > size - 1) {
     error = true;
     return Type();
@@ -79,7 +81,7 @@ Type ValueAt(Type values[], unsigned int size, unsigned int index, bool &error) 
     error = false;
     return values[index];
   }
-}  
+}
 
 /*
  * Function Name: Sum
@@ -96,7 +98,7 @@ Type Sum(Type values[], unsigned int size) {
     sum += values[i];
   }
   return sum;
-}  
+}
 
 /*
  * Function Name: SwapValues
@@ -116,6 +118,6 @@ unsigned int index2) {
     values[index1] = values[index2];
     values[index2] = temp;
     return true;
-  } 
+  }
   return false;
-}  
+}
