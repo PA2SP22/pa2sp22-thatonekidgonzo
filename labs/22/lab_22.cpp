@@ -1,6 +1,6 @@
 /*
  * Name        : lab_22.cpp
- * Author      : YOUR NAME
+ * Author      : Gonzalo Garcia
  * Description : Recursive Functions
  */
 
@@ -83,6 +83,61 @@ int main() {
 }
 
 // CODE FUNCTION DEFINITIONS HERE
+unsigned int Factorial(unsigned int value) {
+  if (value == 0) {
+    return 1;
+  } 
+    return Factorial(value - 1) * value;
+}
+
+unsigned int Fibonacci(unsigned int fib_value) {
+  if (fib_value == 0) {
+    return 0;
+  } else if (fib_value == 1) {
+    return 1; 
+    } 
+    return (Fibonacci(fib_value - 1) + (Fibonacci(fib_value - 2)));
+}
+
+bool WordIsPalindrome(string word) {
+  // i need to use substr() function to divide string
+ if (word == "" || word.length() == 1) {
+    return true;
+  } else if (word[0] == word[word.length() - 1]) {
+    return WordIsPalindrome(word.substr(1, word.length() - 2));
+  }
+  return false;
+}
+
+string ArrayForwardsAsString(int array[], unsigned int start,
+ unsigned int size) {
+ stringstream ss;
+  if (start >= size) {
+    return "";
+  } else {
+    ss << array[start] << " ";
+    std::cout << ss.str() << std::endl;
+    return ss.str() + ArrayForwardsAsString(array, (start + 1), size);
+  }
+}
+
+ 
+string ArrayBackwardsAsString(int array[], unsigned int start, unsigned int size) {
+  if (start >= size) {
+    return "";
+  } else {
+    stringstream ss;
+    ss << array[start] + " ";
+    string s = ss.str() + ArrayBackwardsAsString(array, (start - 1), size);
+    //ss << ArrayBackwardsAsString(array, (start - 1), size);
+    //std::cout << array[start] << " ";
+    //std::cout << ArrayBackwardsAsString(array, (start - 1), size);
+    return s;
+    //return "";
+  } 
+  
+}
+
 
 
 // For testing (DO NOT ALTER)
