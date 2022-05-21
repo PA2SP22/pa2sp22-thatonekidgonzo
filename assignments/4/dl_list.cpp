@@ -86,7 +86,7 @@ void DLList::PopBack() {
   DLNode* nn = tail_->GetPrevious();
   delete tail_;
   tail_ = nn;
-  size_ --;
+  size_--;
 }
 }
 
@@ -106,6 +106,7 @@ void DLList::RemoveFirst(int to_find) {
         front->SetPrevious(back);
         back->SetNext(front);
         delete it;
+        size_--;
       }
       }
   }
@@ -129,6 +130,7 @@ void DLList::RemoveAll(int to_find) {
         front->SetPrevious(back);
         back->SetNext(front);
         delete it;
+        size_--;
       }
       }
     }
