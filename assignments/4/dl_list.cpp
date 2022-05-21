@@ -69,21 +69,34 @@ int DLList::GetBack() const{
 }
 
 void DLList::PopFront() {
-  if (head_ == NULL) {
+  if (size_ == 0) {
    cerr << "List Empty";
+  } else if (size_ == 1) {
+    head_->SetContents(0);
+    //tail_->SetContents(0);
+    head_ = NULL;
+    tail_ = NULL;
+    size_--;
   } else {
-  DLNode* nn = head_->GetNext();
-  delete head_;
-  head_ = nn;
-  size_--;
+    DLNode* nn = new DLNode();
+    nn = head_->GetNext();
+    delete head_;
+    head_ = nn;
+    size_--;
   }
 }
 
 void DLList::PopBack() {
-  if (head_ == NULL) {
+  if (size_ == 0) {
     cerr << "List Empty";
+  } else if (size_ == 1) {
+    head_->SetContents(0);
+    //tail_->SetContents(0);
+    head_ = NULL;
+    tail_ = NULL;
   } else {
-  DLNode* nn = tail_->GetPrevious();
+  DLNode* nn = new DLNode();
+  nn = tail_->GetPrevious();
   delete tail_;
   tail_ = nn;
   size_--;
