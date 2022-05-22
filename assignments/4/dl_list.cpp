@@ -1,4 +1,5 @@
 #include "dl_list.h"
+//#include "dl_node.h"
 
 // Constructor
 DLList::DLList() {
@@ -17,13 +18,11 @@ void DLList::Clear() {
 
 void DLList::PushFront(int content) {
    if (size_ == 0) {
-     DLNode* nn = new DLNode();
-     nn->SetContents(content);
-     head_ = nn;
-     tail_ = nn;
+     head_ = SetContents(content);
+     tail_ = head_;
      size_++;
-   } else {
-     DLNode* nn = new DLNode();
+   } else if (size_ > 0) {
+     DLNode* nn;
      nn->SetContents(content);
      nn->SetNext(head_);
      head_ = nn;
@@ -33,13 +32,11 @@ void DLList::PushFront(int content) {
 
 void DLList::PushBack(int content) {
   if (size_ == 0) {
-    DLNode* nn = new DLNode();
-     nn->SetContents(content);
-     head_ = nn;
-     tail_ = nn;
+    head_->SetContents(content);
+    tail_->SetContents(content);
      size_++;
-  } else {
-    DLNode* nn = new DLNode();
+  } else if (size_ > 0) {
+    DLNode* nn;
     nn->SetContents(content);
     nn->SetPrevious(head_);
     tail_ = nn;
@@ -73,15 +70,15 @@ void DLList::PopFront() {
    cerr << "List Empty";
   } else if (size_ == 1) {
     head_->SetContents(0);
-    //tail_->SetContents(0);
+    tail_->SetContents(0);
     head_ = NULL;
     tail_ = NULL;
     size_--;
   } else {
-    DLNode* nn = new DLNode();
-    nn = head_->GetNext();
+    DLNode* it = head_->GetNext();
     delete head_;
-    head_ = nn;
+    it->SetPrevious(NULL);
+    head_ = it;
     size_--;
   }
 }
@@ -91,65 +88,74 @@ void DLList::PopBack() {
     cerr << "List Empty";
   } else if (size_ == 1) {
     head_->SetContents(0);
-    //tail_->SetContents(0);
+    tail_->SetContents(0);
     head_ = NULL;
     tail_ = NULL;
+    size_--;
   } else {
-  DLNode* nn = new DLNode();
-  nn = tail_->GetPrevious();
-  delete tail_;
-  tail_ = nn;
-  size_--;
-}
+    DLNode* it = tail_->GetPrevious();
+    delete tail_;
+    it->SetNext(NULL);
+    tail_ = it;
+    size_--;
+  }
 }
 
 void DLList::RemoveFirst(int to_find) {
-  if (head_ != NULL) {
-  for (DLNode* it = head_; it != NULL; it = it->GetNext()) {
-      if (it->GetContents() == to_find) {
-      if (it->GetNext() == NULL) {
-        PopBack();
-      } else if (it->GetPrevious() == NULL) {
-        PopFront();
-      } else {
-        DLNode* front = new DLNode();
-        DLNode* back = new DLNode();
-        front = it->GetNext();
-        back = it->GetPrevious();
-        front->SetPrevious(back);
-        back->SetNext(front);
-        delete it;
-        size_--;
-      }
-      }
-  }
-}
+  if (size_ == 0) {
+    cerr << "Not Found";
+  } else if (size_ == 1) {
+    if (to_find == head_->GetContents()) {
+    PopFront();
+    } else {
       cerr << "Not Found";
-}
+    }
+  } else {
+    int counter = 0;
+   for (DLNode* it = head_; it != NULL; it = it->GetNext()) {
+      if (it->GetContents() == to_find && counter == 0) {
+      DLNode* front = it->GetNext();
+      DLNode* back = it->GetPrevious();
+      back->SetPrevious(front);
+      front->SetNext(back);
+      delete it;
+      size_--;
+      counter++;
+    } 
+    }
+    if (counter == 0) {
+       cerr << "Not Found";
+     }
+  }
+  }
 
 void DLList::RemoveAll(int to_find) {
-  if (head_ != NULL) {
+  if (size_ == 0) {
+    cerr << "Not Found";
+  } else if (size_ == 1) {
+    if (to_find == head_->GetContents()) {
+      PopFront();
+    } else {
+      cerr << "Not Found";
+    }
+  } else {
+    int counter = 0;
     for (DLNode* it = head_; it != NULL; it = it->GetNext()) {
       if (it->GetContents() == to_find) {
-      if (it->GetNext() == NULL) {
-        PopBack();
-      } else if (it->GetPrevious() == NULL) {
-        PopFront();
-      } else {
-        DLNode* front = new DLNode();
-        DLNode* back = new DLNode();
-        front = it->GetNext();
-        back = it->GetPrevious();
-        front->SetPrevious(back);
-        back->SetNext(front);
-        delete it;
-        size_--;
-      }
-      }
+      DLNode* front = it->GetNext();
+      DLNode* back = it->GetPrevious();
+      back->SetPrevious(front);
+      front->SetNext(back);
+      delete it;
+      size_--;
+      counter++;
+    } 
+    }
+     if (counter == 0) {
+       cerr << "Not Found";
+     }
     }
   }
-  cerr << "Not Found";
-}
 
 bool DLList::Exists(int to_find) {
   if (head_ != NULL) {
