@@ -18,11 +18,13 @@ void DLList::Clear() {
 
 void DLList::PushFront(int content) {
    if (size_ == 0) {
-     head_ = SetContents(content);
-     tail_ = head_;
+     DLNode* nn = new DLNode();
+     nn->SetContents(content);
+     tail_ = nn;
+     head_ = nn;
      size_++;
    } else if (size_ > 0) {
-     DLNode* nn;
+     DLNode* nn = new DLNode();
      nn->SetContents(content);
      nn->SetNext(head_);
      head_ = nn;
@@ -32,13 +34,15 @@ void DLList::PushFront(int content) {
 
 void DLList::PushBack(int content) {
   if (size_ == 0) {
-    head_->SetContents(content);
-    tail_->SetContents(content);
+    DLNode* nn = new DLNode();
+    nn->SetContents(content);
+    head_ = nn;
+    tail_ = nn;
      size_++;
   } else if (size_ > 0) {
-    DLNode* nn;
+    DLNode* nn = new DLNode();
     nn->SetContents(content);
-    nn->SetPrevious(head_);
+    nn->SetPrevious(tail_);
     tail_ = nn;
     size_++;
   }
