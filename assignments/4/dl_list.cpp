@@ -27,6 +27,7 @@ void DLList::PushFront(int content) {
      DLNode* nn = new DLNode();
      nn->SetContents(content);
      nn->SetNext(head_);
+     // Luke: What about the previous pointer?
      head_ = nn;
      size_++;
    }
@@ -75,6 +76,8 @@ void DLList::PopFront() {
   } else if (size_ == 1) {
     head_->SetContents(0);
     tail_->SetContents(0);
+    // Luke: You can't just set things to NULL.
+    // Luke: You also need to delete to avoid a memory leak
     head_ = NULL;
     tail_ = NULL;
     size_--;
@@ -91,6 +94,7 @@ void DLList::PopBack() {
   if (size_ == 0) {
     cerr << "List Empty";
   } else if (size_ == 1) {
+    // Luke: You should really just call PopFront() here
     head_->SetContents(0);
     tail_->SetContents(0);
     head_ = NULL;
