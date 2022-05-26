@@ -13,48 +13,33 @@ using std::string;
 using std::ifstream;
 using std::cerr;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char** argv) {
   if (argc == 1) {
-    string line;
-     while (!cin.eof()) { 
-      // Get input from user (getline)
-      getline(cin,line);
-      // Output it back
-      cout << line << endl;
-     }
+    while (!cin.eof()) {
+      string output;
+      cin >> output;
+      cout << output << endl;
+    }
+    return 0;
   } else {
-    ifstream fin;
-    string to_check;
-    // Loop to see if the files exist
+    string file;
     for (int i = 1; i < argc; i++) {
-      // Open the file
-      fin.open(argv[i]);
-      // Check to see if it exists
-      if (fin.fail()) {
-        cerr << "File name not valid" << endl;
+      file = argv[i];
+      ifstream open(file);
+      if (open.fail()) {
+        cerr << "File does not exist" << endl;
         exit(1);
       }
-      // Close the file
-      fin.close();
     }
     for (int i = 1; i < argc; i++) {
-     // Open the file
-      fin.open(argv[i]);
-     // Ouput its contents
-     getline(cin,fin);
-     cout << fin << endl;
-     // Close the file
-     fin.close();
+      string output;
+      file = argv[i];
+      ifstream read(file);
+      while (!read.eof()) {
+        getline(read, output);
+        cout << output << endl;
+      }
     }
   }
-    
-   //advanced i/o
-      
-}
-      
-
-    
-  
-  
   return 0;
 }

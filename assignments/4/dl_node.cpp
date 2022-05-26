@@ -8,7 +8,6 @@ DLNode::DLNode() {
 
 // destructor
 DLNode::~DLNode() {
-  
 }
 
 void DLNode::SetContents(int contents) {
@@ -20,7 +19,7 @@ void DLNode::SetNext(DLNode* next) {
 }
 
 void DLNode::SetPrevious(DLNode* previous) {
-  previous_ = previous; 
+  previous_ = previous;
 }
 
 int DLNode::GetContents() const {

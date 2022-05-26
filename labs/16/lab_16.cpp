@@ -1,6 +1,6 @@
 /*
  * Name        : lab_16.cpp
- * Author      : FILL IN
+ * Author      : Gonzalo Garcia
  * Description : Working with a Dynamic Array in a Class
  */
 #include <iostream>
@@ -124,6 +124,53 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITIONS
+ShoppingList::ShoppingList() {
+  max_items_ = 25;
+  items_ = new string[max_items_];
+  item_count_ = 0;
+}
+
+ShoppingList::ShoppingList(unsigned int max_items) {
+  max_items_ = max_items;
+  items_ = new string[max_items];
+  item_count_ = 0;
+}
+
+ShoppingList::~ShoppingList() {
+  delete[] items_;
+}
+
+unsigned int ShoppingList::max_items() const {
+  return max_items_;
+}
+
+unsigned int ShoppingList::item_count() const {
+  return item_count_;
+}
+
+bool ShoppingList::AddItem(string item) {
+  if (item_count_ < max_items_) {
+    items_[item_count_] = item;
+    item_count_++;
+    return true;
+  } 
+    return false;
+  
+}
+
+string ShoppingList::GetItem(unsigned int index) const {
+  if (index < (item_count_ - 1) && index > 0) {
+    return items_[index - 1];
+  }
+}
+
+string& ShoppingList::GetItem(unsigned int index) {
+  
+}
+
+void ShoppingList::Reset(unsigned int max_items) {
+  
+}
 
 
 // For testing (DO NOT ALTER)

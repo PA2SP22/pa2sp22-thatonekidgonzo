@@ -10,21 +10,19 @@
 #include "dl_node.h"
 using std::string;
 using std::stringstream;
-using namespace std;
+
 
 // Header Guard
 #ifndef GARCIA_DUAL_LINKED_LIST_
 #define GARCIA_DUAL_LINKED_LIST_
 
 class DLList {
-  public:
-  
+ public:
 // constructor
 DLList();
-  
 // destructor
 ~DLList();
-  
+
 unsigned int GetSize() const;
 
 void PushFront(int content);
@@ -51,7 +49,7 @@ string ToStringForwards();
 
 string ToStringBackwards();
 
-  private:
+ private:
   int size_;
   DLNode* head_;
   DLNode* tail_;

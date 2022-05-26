@@ -226,3 +226,4 @@ void OutputFailedTests() {
     cout << failed_tests.at(failed_tests.size() - 1) << endl;
   }
 }
+ 

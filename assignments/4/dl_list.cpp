@@ -1,5 +1,4 @@
 #include "dl_list.h"
-//#include "dl_node.h"
 
 // Constructor
 DLList::DLList() {
@@ -11,38 +10,39 @@ DLList::DLList() {
 DLList::~DLList() {
   Clear();
 }
-// Clearing 
+// Clearing
 void DLList::Clear() {
-  
+  for (unsigned int i = size_; i > 0; i--) {
+    PopBack();
+  }
+  head_ = NULL;
 }
 
 void DLList::PushFront(int content) {
-   if (size_ == 0) {
+  if (size_ == 0) {
      DLNode* nn = new DLNode();
      nn->SetContents(content);
      tail_ = nn;
      head_ = nn;
      size_++;
-   } else if (size_ > 0) {
+  } else if (size_ > 0) {
      DLNode* nn = new DLNode();
      nn->SetContents(content);
      nn->SetNext(head_);
+     head_->SetPrevious(nn);
      head_ = nn;
      size_++;
-   }
+  }
 }
 
 void DLList::PushBack(int content) {
   if (size_ == 0) {
-    DLNode* nn = new DLNode();
-    nn->SetContents(content);
-    head_ = nn;
-    tail_ = nn;
-     size_++;
+    PushFront(content);
   } else if (size_ > 0) {
     DLNode* nn = new DLNode();
     nn->SetContents(content);
     nn->SetPrevious(tail_);
+    tail_->SetNext(nn);
     tail_ = nn;
     size_++;
   }
@@ -53,17 +53,17 @@ unsigned int DLList::GetSize() const {
 }
 
 
-int DLList:: GetFront() const{
+int DLList:: GetFront() const {
   if (head_ == NULL) {
-    cerr << "List Empty";
+    std::cerr << "List Empty";
   return 0;
 }
   return head_->GetContents();
 }
 
-int DLList::GetBack() const{
+int DLList::GetBack() const {
   if (head_ == NULL) {
-    cerr << "List Empty";
+    std::cerr << "List Empty";
   return 0;
 }
   return tail_->GetContents();
@@ -71,17 +71,15 @@ int DLList::GetBack() const{
 
 void DLList::PopFront() {
   if (size_ == 0) {
-   cerr << "List Empty";
+  std::cerr << "List Empty";
   } else if (size_ == 1) {
-    head_->SetContents(0);
-    tail_->SetContents(0);
-    head_ = NULL;
-    tail_ = NULL;
-    size_--;
+     delete head_;
+     head_ = tail_ = NULL;
+     size_--;
   } else {
-    DLNode* it = head_->GetNext();
+    DLNode* it;
+    it = head_->GetNext();
     delete head_;
-    it->SetPrevious(NULL);
     head_ = it;
     size_--;
   }
@@ -89,77 +87,77 @@ void DLList::PopFront() {
 
 void DLList::PopBack() {
   if (size_ == 0) {
-    cerr << "List Empty";
+    std::cerr << "List Empty";
   } else if (size_ == 1) {
-    head_->SetContents(0);
-    tail_->SetContents(0);
-    head_ = NULL;
-    tail_ = NULL;
-    size_--;
+    PopFront();
   } else {
     DLNode* it = tail_->GetPrevious();
     delete tail_;
-    it->SetNext(NULL);
     tail_ = it;
+    tail_->SetNext(NULL);
     size_--;
   }
 }
 
 void DLList::RemoveFirst(int to_find) {
   if (size_ == 0) {
-    cerr << "Not Found";
-  } else if (size_ == 1) {
-    if (to_find == head_->GetContents()) {
-    PopFront();
-    } else {
-      cerr << "Not Found";
-    }
+    std::cerr << "Not Found";
   } else {
-    int counter = 0;
-   for (DLNode* it = head_; it != NULL; it = it->GetNext()) {
-      if (it->GetContents() == to_find && counter == 0) {
-      DLNode* front = it->GetNext();
-      DLNode* back = it->GetPrevious();
-      back->SetPrevious(front);
-      front->SetNext(back);
+    // Search for the value
+    DLNode *it = head_;
+    while (it != NULL && it->GetContents() != to_find) {
+      it = it->GetNext();
+    }
+    if (it == NULL) {
+      std::cerr << "Not Found";
+    } else if (it == head_) {
+      PopFront();
+    } else if (it == tail_) {
+      PopBack();
+    } else {
+      DLNode* front;
+      DLNode* back;
+      front = it->GetNext();
+      back = it->GetPrevious();
+      front->SetPrevious(back);
+      back->SetNext(front);
       delete it;
       size_--;
-      counter++;
-    } 
     }
-    if (counter == 0) {
-       cerr << "Not Found";
-     }
   }
-  }
+}
 
 void DLList::RemoveAll(int to_find) {
   if (size_ == 0) {
-    cerr << "Not Found";
-  } else if (size_ == 1) {
-    if (to_find == head_->GetContents()) {
-      PopFront();
-    } else {
-      cerr << "Not Found";
-    }
+    std::cerr << "Not Found";
   } else {
-    int counter = 0;
-    for (DLNode* it = head_; it != NULL; it = it->GetNext()) {
-      if (it->GetContents() == to_find) {
-      DLNode* front = it->GetNext();
-      DLNode* back = it->GetPrevious();
-      back->SetPrevious(front);
-      front->SetNext(back);
-      delete it;
-      size_--;
-      counter++;
-    } 
-    }
-     if (counter == 0) {
-       cerr << "Not Found";
-     }
+    if (Exists(to_find) == true) {
+      for (DLNode* it = head_; it != NULL; it = it->GetNext()) {
+        if (it->GetContents() == to_find) {
+          if (it == head_) {
+            PopFront();
+            it = head_;
+          } else if (it == tail_) {
+            PopBack();
+            break;
+          } else {
+            DLNode* front;
+            DLNode* back;
+            front = it->GetNext();
+            back = it->GetPrevious();
+            front->SetPrevious(back);
+            back->SetNext(front);
+            delete it;
+            size_--;
+            it = back;
+          }
+        }
+      }
+    } else {
+      std::cerr << "Not Found";
     }
   }
+}
 
 bool DLList::Exists(int to_find) {
   if (head_ != NULL) {
@@ -175,12 +173,11 @@ bool DLList::Exists(int to_find) {
 
 string DLList::ToStringForwards() {
   if (size_ == 0) {
-    cerr << "List Empty";
+    std::cerr << "List Empty";
     return "";
   } else if (size_ == 1) {
     stringstream ss;
     ss << head_->GetContents();
-    std::cout << ss.str() << endl;
     return ss.str();
   } else {
     stringstream ss;
@@ -188,14 +185,13 @@ string DLList::ToStringForwards() {
     ss << it->GetContents() << ", ";
     }
     ss << tail_->GetContents();
-    std::cout << ss.str() << endl;
     return ss.str();
   }
 }
 
 string DLList::ToStringBackwards() {
   if (size_ == 0) {
-    cerr << "List Empty";
+    std::cerr << "List Empty";
     return "";
   } else if (size_ == 1) {
     stringstream ss;
@@ -204,7 +200,7 @@ string DLList::ToStringBackwards() {
   } else {
     stringstream ss;
     for (DLNode* it = tail_; it != head_; it = it->GetPrevious()) {
-      ss << it->GetContents() << ",";
+      ss << it->GetContents() << ", ";
     }
     ss << head_->GetContents();
     return ss.str();

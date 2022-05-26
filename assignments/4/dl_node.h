@@ -14,8 +14,8 @@ using std::stringstream;
 #define GARCIA_DUAL_LINKED_LIST_NODE_
 
 class DLNode {
-  public:
-// constructor  
+ public:
+// constructor
 DLNode();
 
 // destructor
@@ -32,7 +32,7 @@ int GetContents() const;
 DLNode* GetNext() const;
 
 DLNode* GetPrevious() const;
-  private:
+ private:
   DLNode* previous_;
   DLNode* next_;
   int contents_;
