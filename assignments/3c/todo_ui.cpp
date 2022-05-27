@@ -6,9 +6,8 @@ TodoUI::TodoUI() {
 }
 
 TodoUI::~TodoUI() {
- //list_->~TodoList();
-  //delete list_;
-  
+ list_->~TodoList();
+ delete list_;
 }
 
 void TodoUI::Menu() {
@@ -37,10 +36,10 @@ void TodoUI::Menu() {
      EditItem();
      break;
     case 5:
-     Delete();
+     Delete(location_);
      break;
     case 6:
-     DeleteAll();
+     list_->~TodoList();
      break;
   }
   }
@@ -63,10 +62,8 @@ void TodoUI::EditItem() {
   CinReader reader;
   int edit_choice = 0;
   string name;
-  int location = 0;
   int priority = 0;
   char status;
-  TodoItem* temp;
   while (edit_choice != 6) {
    cout << "Options" << endl << "1: Choose Item" << endl << 
    "2: Edit Name" << endl << "3: Edit Priority" << endl << 
@@ -77,25 +74,22 @@ void TodoUI::EditItem() {
      case 1:
       cout << list_->ToFile() << endl; 
       cout << "Please enter the position of the item you would like to choose: ";
-      location = reader.readInt(1, list_->GetSize());
-      temp = list_->GetItem(location);
+      location_ = reader.readInt(1, list_->GetSize());
+      temp = list_->GetItem(location_);
       name = temp->description();
       cout << "You have chosen " << name << endl;
-      // EditItem();
       break;
     case 2: 
      cout << "Change Name to: ";
      name = reader.readString(false);
      temp->set_description(name);
      cout << "Name has been changed" << endl;
-     // EditItem();
      break;
     case 3: 
      cout << "Change Priority to: ";
      priority = reader.readInt(1, 5);
      temp->set_priority(priority);
      cout << "Priority has been changed" << endl;
-     // EditItem();
      break;
     case 4:
      cout << "Change Completion Status:(T,F): ";
@@ -103,11 +97,9 @@ void TodoUI::EditItem() {
       if (status == 't' || 'T') {
         temp->set_completed(true);
         cout << "Status has been changed" << endl;
-        // EditItem();
       }
       temp->set_completed(false);
       cout << "Status has been changed" << endl;
-      // EditItem();
       break;
       case 5:
       stringstream ss;
@@ -118,19 +110,14 @@ void TodoUI::EditItem() {
   }
 }
 
-void TodoUI::ViewAll() {
-  
-  
+string TodoUI::ViewAll() {
+  return list_->ToFile();
 }
 
-string TodoUI::View(unsigned int location) {
-  return "";
+string TodoUI::View() {
+   return temp->description();
 }
 
-void TodoUI::Delete() {
-  
-}
-
-void TodoUI::DeleteAll() {
-  
+void TodoUI::Delete(unsigned int location) {
+  list_->DeleteItem(location);
 }

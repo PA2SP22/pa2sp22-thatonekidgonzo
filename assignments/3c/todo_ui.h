@@ -32,13 +32,11 @@ void CreateItem();
 
 void EditItem();
 
-void ViewAll();
+string ViewAll();
 
-string View(unsigned int location);
+string View();
 
-void Delete();
-
-void DeleteAll();
+void Delete(unsigned int location);
 
 
   private:
@@ -46,6 +44,7 @@ void DeleteAll();
   TodoList* list_;
   char user_start;
   int user_choice;
+  TodoItem* temp;
 };
 
 
